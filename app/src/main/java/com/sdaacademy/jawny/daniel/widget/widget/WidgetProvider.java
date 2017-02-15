@@ -21,6 +21,16 @@ public class WidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
         Log.i(TAG, "onUpdate");
+
+        ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
+        int[] widgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+
+        for (int widgetId : widgetIds) {
+            int random = new Random().nextInt(1000);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+            remoteViews.setTextViewText(R.id.randomText, String.valueOf(random));
+            appWidgetManager.updateAppWidget(widgetId, remoteViews);
+        }
     }
 
     @Override
@@ -33,16 +43,6 @@ public class WidgetProvider extends AppWidgetProvider {
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
         Log.i(TAG, "onAppWidgetOptionsChanged");
-
-        ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
-        int[] widgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-
-        for (int widgetId : widgetIds) {
-            int random = new Random().nextInt(1000);
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-            remoteViews.setTextViewText(R.id.randomText, String.valueOf(random));
-            appWidgetManager.updateAppWidget(widgetId,remoteViews);
-        }
     }
 
     @Override
