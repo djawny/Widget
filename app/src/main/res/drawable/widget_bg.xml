@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/round_corners_rect" />
+    <item
+        android:width="8dp"
+        android:height="8dp"
+        android:drawable="@drawable/ic_stat_name"
+        android:gravity="bottom|right" />
+</layer-list>
