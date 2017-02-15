@@ -4,6 +4,6 @@
     <item
         android:width="8dp"
         android:height="8dp"
-        android:drawable="@drawable/ic_stat_name"
+        android:drawable="@drawable/ic_brightness_high_black_24dp"
         android:gravity="bottom|right" />
 </layer-list>
