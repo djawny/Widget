@@ -2,7 +2,7 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialLayout="@layout/widget_layout"
     android:minHeight="72dp"
-    android:minResizeWidth="128dp"
+    android:minWidth="128dp"
     android:updatePeriodMillis="1800000">
 
 </appwidget-provider>
