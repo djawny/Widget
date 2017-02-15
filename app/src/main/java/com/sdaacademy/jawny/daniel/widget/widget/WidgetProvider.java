@@ -1,5 +1,6 @@
 package com.sdaacademy.jawny.daniel.widget.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -29,6 +30,15 @@ public class WidgetProvider extends AppWidgetProvider {
             int random = new Random().nextInt(1000);
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
             remoteViews.setTextViewText(R.id.randomText, String.valueOf(random));
+
+            Intent intent = new Intent(context, WidgetProvider.class);
+            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            remoteViews.setOnClickPendingIntent(R.id.randomText, pendingIntent);
+
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }
