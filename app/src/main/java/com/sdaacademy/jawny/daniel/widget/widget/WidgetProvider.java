@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.RemoteViews;
+
+import com.sdaacademy.jawny.daniel.widget.R;
 
 import java.util.Random;
 
@@ -31,10 +34,15 @@ public class WidgetProvider extends AppWidgetProvider {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
         Log.i(TAG, "onAppWidgetOptionsChanged");
 
-        int random = new Random().nextInt(1000);
-
         ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
         int[] widgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+
+        for (int widgetId : widgetIds) {
+            int random = new Random().nextInt(1000);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+            remoteViews.setTextViewText(R.id.randomText, String.valueOf(random));
+            appWidgetManager.updateAppWidget(widgetId,remoteViews);
+        }
     }
 
     @Override
